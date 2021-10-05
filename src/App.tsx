@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 function App() {
-  return (
-    <div className="App">
-      nankakaku
-    </div>
-  );
+  return <div className="App">nankakaku</div>;
 }
 
 export default App;
