@@ -1,6 +1,5 @@
 
 import { useState } from 'react'
-
 import {v4} from 'uuid';
 
 
@@ -21,18 +20,18 @@ function App() {
   }
 
   const onAdd = () => {
-    console.log({ inputText:( inputText.length <= 0) })
     if(inputText.length <= 0) {
       return;
     }
       setTodoList((prevState) => [...prevState, { uuid: v4(), todo: inputText }])
-
+      setInputText('')
   }
 
   return (
     <div style={{ width: '30rem', margin: '0 auto' }}>
       <h1>TODO APP</h1>
       <input
+        value={inputText}
         type="text"
         name={'todo'}
         onChange={(e) => setInputText(e.target.value)}
