@@ -1,85 +1,54 @@
-import React, { useState } from "react";
-import { isTemplateExpression } from "typescript";
 
+import { useState } from 'react'
 
+import {v4} from 'uuid';
 
 
 function App() {
-  const [inputText,setInputText] =useState('')
-  const [todoList,setTodoList] = useState(
-    [
-      {
-        todo: '文字1',
-      },
-      {
-        todo: '文字2',
-      },
-      {
-        todo: '文字3',
-      },
-      {
-        todo: '文字4',
-      },
-    ]
-  )
+  const [inputText, setInputText] = useState('')
+  const [todoList, setTodoList] = useState<
+  {
+    uuid: string
+    todo: string
+  }[]
+  >([])
 
-
-  const onDelete =(todo:string)=>{
+  //削除するメソッド
+  const onDelete = (uuid: string) => {
     setTodoList((prevState) => {
-      return prevState.filter((n)=> (n.todo !== todo))
+      return prevState.filter((n) => n.uuid !== uuid)
     })
   }
 
-  return<>
-  <div style={{ width: '30rem', margin: '0 auto' }}>
-    <h1>TODO APP</h1>
-    <input type="text" name={'todo'} onChange={(e)=>{
-      setInputText(e.target.value)
-    }} />
-    <button
-      onClick={() => {
-        setTodoList((prevState) => {
-        return [...prevState,{todo:inputText}]
-        })
-      }}
-    >
-      追加
-      </button>
-    <p>{inputText}</p>
-    <div>
-      <ul>
-          {todoList.map((item:{todo:string},index)=>{
-            return(
+  const onAdd = () => {
+    setTodoList((prevState) => [...prevState, { uuid: v4(), todo: inputText }])
+  }
+
+  return (
+    <div style={{ width: '30rem', margin: '0 auto' }}>
+      <h1>TODO APP</h1>
+      <input
+        type="text"
+        name={'todo'}
+        onChange={(e) => setInputText(e.target.value)}
+      />
+      <button onClick={onAdd}>追加</button>
+      <div>
+        <ul>
+          {todoList.map((item, index) => {
+            return (
               <li key={`todo_${index}`}>
                 {item.todo}
-                <button type={'button'} onClick={()=>onDelete(item.todo)}>削除</button>
+                <button type={'button'} onClick={() => onDelete(item.uuid)}>
+                  削除
+                </button>
               </li>
             )
           })}
-      </ul>
+        </ul>
+      </div>
     </div>
-  </div>
-  </>
+  )
 }
 
-export default App;
-
-
-
-
-
-
-// function App(){
-//   const test =[] as {todo:string}[]
-//   list.forEach((item:{todo:string})=>{
-//     test.push({
-//       todo: item.todo + 'hoge',
-//     })
-//   })
-// }
-
-// const test2 =list.map((item:{todo:string})=>{
-//   return{
-//     todo:item.todo +'hoge',
-//   }
-// })
+export default App
