@@ -21,7 +21,12 @@ function App() {
   }
 
   const onAdd = () => {
-    setTodoList((prevState) => [...prevState, { uuid: v4(), todo: inputText }])
+    console.log({ inputText:( inputText.length <= 0) })
+    if(inputText.length <= 0) {
+      return;
+    }
+      setTodoList((prevState) => [...prevState, { uuid: v4(), todo: inputText }])
+
   }
 
   return (
