@@ -1,31 +1,17 @@
-
-import { useState } from 'react'
+import {ChangeEvent, useState } from 'react'
 import {v4} from 'uuid';
+import { useTodo } from './useTodo';
 
 
 function App() {
-  const [inputText, setInputText] = useState('')
-  const [todoList, setTodoList] = useState<
-  {
-    uuid: string
-    todo: string
-  }[]
-  >([])
+  const {
+    inputText,
+    onChengeInputText,
+    onAdd,
+    todoList,
+    onDelete
+} = useTodo()
 
-  //削除するメソッド
-  const onDelete = (uuid: string) => {
-    setTodoList((prevState) => {
-      return prevState.filter((n) => n.uuid !== uuid)
-    })
-  }
-
-  const onAdd = () => {
-    if(inputText.length <= 0) {
-      return;
-    }
-      setTodoList((prevState) => [...prevState, { uuid: v4(), todo: inputText }])
-      setInputText('')
-  }
 
   return (
     <div style={{ width: '30rem', margin: '0 auto' }}>
@@ -34,7 +20,7 @@ function App() {
         value={inputText}
         type="text"
         name={'todo'}
-        onChange={(e) => setInputText(e.target.value)}
+        onChange={onChengeInputText}
       />
       <button onClick={onAdd}>追加</button>
       <div>
