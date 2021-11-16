@@ -36,3 +36,5 @@ export const useTodo =()=>{
      onDelete
  }
 }
+
+export type useTodoHooksResult = ReturnType<typeof useTodo>

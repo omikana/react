@@ -1,7 +1,7 @@
 import {ChangeEvent, useState } from 'react'
 import {v4} from 'uuid';
 import { useTodo } from './useTodo';
-
+import { TodoInput } from './TodoInput';
 
 function App() {
   const {
@@ -16,13 +16,9 @@ function App() {
   return (
     <div style={{ width: '30rem', margin: '0 auto' }}>
       <h1>TODO APP</h1>
-      <input
-        value={inputText}
-        type="text"
-        name={'todo'}
-        onChange={onChengeInputText}
-      />
-      <button onClick={onAdd}>追加</button>
+      <TodoInput inputText={inputText}
+      onChengeInputText={onChengeInputText}
+      onAdd={onAdd} />
       <div>
         <ul>
           {todoList.map((item, index) => {
