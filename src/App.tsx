@@ -13,6 +13,7 @@ type Movie = {
 
 function App() {
   const [moveis,setMoveis] =useState<Movie[]>([])
+console.log(process.env.REACT_APP_TMDB_API_KEY);
 
   useEffect(()=>{
     (async()=>{
