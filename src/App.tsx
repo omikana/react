@@ -1,36 +1,35 @@
-import React, { useEffect, useState } from "react";
-import {requests}  from "./libs/request";
-import {instance}  from "./libs/axios";
-
-type Movie = {
-  id: string;
-  name: string;
-  title: string;
-  original_name: string;
-  poster_path: string;
-  backdrop_path: string;
-};
+// import React, { useEffect, useState } from "react";
+// import {requests}  from "./libs/request";
+// import {instance}  from "./libs/axios";
+import {Row}  from "./components/Row";
+import { requests } from "./libs/request";
 
 function App() {
-  const [moveis,setMoveis] =useState<Movie[]>([])
-console.log(process.env.REACT_APP_TMDB_API_KEY);
+  
+  
+  return <div className="App">
+    {/* <Row title="NETFLIX ORIGUINALS" fetchUrl={requests.fetchTopRated} />
+    <Row title="Action Movies"  fetchUrl={requests.fetchActionMovies} />
+    <Row title="Comedy Movies"  fetchUrl={requests.fetchComedyMovies} />
+    <Row title="Horror Movies" fetchUrl={requests.fetchHorrorMovies} />
+    <Row title="Horror Movies" fetchUrl={requests.fetchNetflixOriginals} />
+    <Row title="Romance Movies" fetchUrl={requests.fetchRomanceMovies} />
+    <Row title="Top Rated" fetchUrl={requests.fetchTopRated} />
+    <Row title="Documentaries" fetchUrl={requests.fetchTrending} /> */}
 
-  useEffect(()=>{
-    (async()=>{
-      const res = await instance.get<{results:Movie[]}>(requests.fetchTrending)
-      setMoveis(res.data.results)
-    })()
-  },[])
+    <Row
+      title="NETFLIX ORIGUINALS"
+      fetchUrl={requests.fetchNetflixOriginals}
+      isLargeRow
+    />
+    <Row title="Top Rated" fetchUrl={requests.fetchTopRated} />
+    <Row title="Action Movies" fetchUrl={requests.fetchActionMovies} />
+    <Row title="Comedy Movies" fetchUrl={requests.fetchComedyMovies} />
+    <Row title="Horror Movies" fetchUrl={requests.fetchHorrorMovies} />
+    <Row title="Romance Movies" fetchUrl={requests.fetchRomanceMovies} />
+    <Row title="DOcumentaries" fetchUrl={requests.fetchDocumentMovies} />
 
-  console.log(moveis);
-  return <div className="App">{moveis.map((movie)=>{
-    return (
-      <div key="movie.id">
-        <div>{movie.title}</div>
-        <img src={"https://image.tmdb.org/t/p/original" + movie.backdrop_path} alt="" />
-      </div>
-    )
-  })}</div>;
+  </div>;
 
 }
 

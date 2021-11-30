@@ -1,0 +1,28 @@
+.list{
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 20px;
+}
+
+.item {
+    width: 20%;
+    flex-shrink: 0;
+}
+
+.imageWrpper {
+    /* position: relative; */
+}
+
+.image {
+    /* position: absolute;
+    top: 0;
+    left: 0;width: 100%;
+    object-fit: cover; */
+    object-fit: cover;
+    width: 100%;
+    transition: transform .3s ease-out;
+}
+.image:hover {
+    transform: scale(1.1);
+}
