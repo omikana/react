@@ -51,5 +51,3 @@ export const Row =(props:Props)=>{
 }
 
 
-        {/* <div className={styles.imageWrpper} style={{paddingTop:`${(9 / 16) * 100}%`}}> */}
-        {/* </div> */}
